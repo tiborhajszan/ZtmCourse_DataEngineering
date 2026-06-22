@@ -4,15 +4,35 @@
 
 #### Lessons
 - Introduction
+- What Is a Data Lake?
+
+### Database
+- Databases store structured data and current values (no historical data is available).
+- Modern systems run several databases, with each database storing only parts of the full dataset.
+- Users interact with databases via an API that controls data access.
+- Analysts also query databases that slows down database operations and suffers from lack of historical data.
+
+### Data Warehouse
+- Centralized data repository designed explicitly for analytical purposes.
+#### Components
+- **Source:** Other databases.
+- **Ingestion:** ETL, Extract > Transform (vendor-specific data format required) > Load (loss of raw data).
+- **Storage:** Centralized storage and compute.
+- **Type:** Structured (tabular) and historical data, vendor-specific data format.
+- **Processing:** Vendor-specific data processing tools.
+- **API:** Controlled database access for users.
+- **Analytics:** Vendor-specific data analysis tools.
 
 ### Data Lake
-- A data lake is a scalable repository for storing data.
-#### Data Lake Components
-- **Data Ingestion:** Obtains our data from data sources.
-- **Data Storage:** Key component that stores our data.
-- **Data Catalog:** Inventories our data.
-- **Data Processing:** Prepares our data for consumption (data engineer).
-- **Data Analytics:** Consumes our data (data analysts/scientists).
+- Scalable and distributed data repository.
+#### Components
+- **Source:** Any (personal/business/research/environmental data, other systems/databases).
+- **Ingestion:** ELT, Extract > Load (keeps raw data) > Transform (decided by data engineer).
+- **Storage:** Separate storage and compute; distributed data; metadata server keeps track of what is stored where.
+- **Type:** Any type and data format.
+- **Processing:** Any data processing tool (Spark, Flink, etc).
+- **Catalog:** Inventory of what data is available for users.
+- **Analytics:** Any data analysis tool.
 
 ## Resources
 
