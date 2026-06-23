@@ -1,12 +1,17 @@
-# Section 03 | Creating a Data Lake with AWS
-
 <span style="color: #ED7D31;">**ZtM Academy | Data Engineering Bootcamp | Zero to Mastery**</span>
+
+# Section 03 | Creating a Data Lake with AWS
 
 #### Lessons
 - Introduction
 - What Is a Data Lake?
+- Amazon Web Services (AWS)
 
 ### Database
+- Local or cloud data repository in the service of local or web applicatons.
+#### Components
+- **Data Source:** User-derived data (personal, business, research, monitoring, etc).
+- **Data Ingestion:** Data is mostly entered by users or automated systems.
 - Databases store structured data and current values (no historical data is available).
 - Modern systems run several databases, with each database storing only parts of the full dataset.
 - Users interact with databases via an API that controls data access.
@@ -34,9 +39,18 @@
 - **Catalog:** Inventory of what data is available for users.
 - **Analytics:** Any data analysis tool.
 
+### Amazon Web Services (AWS)
+- **Cloud Provider:** AWS offers computer resources for rent.
+- **Solutions:** Instead of buying hardware, clients rent infrastructure from AWS.
+- **Scalability:** AWS infrastructure automatically scales with varying loads (elastic services).
+- **Pay As You Go:** Clients pay only for what they use.
+- **Access:** AWS website, API, CLI.
+
 ## Resources
 
 <div style="color: navajowhite; font-weight: bold;">
+
+Amazon Web Services [🔗](https://aws.amazon.com/)
 
 Resource [🔗]()
 
