@@ -7,6 +7,7 @@
 - What Is a Data Lake?
 - Amazon Web Services (AWS)
 - Simple Storage Service (S3)
+- Setting Up an AWS Account
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
@@ -47,10 +48,15 @@
 
 ### Amazon Simple Storage Service (S3)
 - **Data Storage Solution:** Hosting and managing a distributed data storage system requires lot of work and expertise. Clients can hand over this work to AWS by utilizing the managed S3 service.
-- **S3 Buckets:** Data is stored in S3 buckets that have unique names accross all AWS users. S3 buckets can store an unlimited number of binary objects, i.e., any data type and format is accepted. Each binary object has a key (file name) and correspoding value (file content).
-- **Simulated Directory Structure:** Although S3 does not use folders, users can simulate a directory structure by using path strings instead of simple file names.
-- **Rich API Access:** In this course, we use Apache Spark to directly communicate with S3 by specifying an s3:// url.
+- **S3 Buckets:** Data is stored in S3 buckets that have unique names accross all AWS clients. S3 buckets can store an unlimited number of binary objects, i.e., any data type and format is accepted. Each binary object has a key (file name) and correspoding value (file content).
+- **Simulated Directory Structure:** Although S3 does not support folders, users can simulate a directory structure by using path strings instead of simple file names.
+- **Rich API Access:** In this course, we use Apache Spark to directly communicate with S3 by specifying an s3:// URL.
 - **S3 Alternatives:** Google Cloud Storage, Azure Blob Storage, Hadoop Distributed Filesystem.
+
+### AWS Account Setup
+- **Root User:** Automatically created during the AWS account setup. Like an administrator account in Windows, the Root User has full administrative access to the AWS account. Consequently, it should not be used for everyday tasks.
+- **IAM User:** A user entity created by the Root User for everyday tasks. Like a simple user account in Windows, the IAM user has its own credentials and permissions. IAM = Identity and Access Management.
+- **AWS Management Console:** Web UI for creating users and performing AWS account administration.
 
 ## Resources
 
