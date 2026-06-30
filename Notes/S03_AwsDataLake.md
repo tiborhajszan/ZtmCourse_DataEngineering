@@ -8,6 +8,7 @@
 - Amazon Web Services (AWS)
 - Simple Storage Service (S3)
 - Setting Up an AWS Account
+- Data Partitioning
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
@@ -54,9 +55,15 @@
 - **S3 Alternatives:** Google Cloud Storage, Azure Blob Storage, Hadoop Distributed Filesystem.
 
 ### AWS Account Setup
-- **Root User:** Automatically created during the AWS account setup. Like an administrator account in Windows, the Root User has full administrative access to the AWS account. Consequently, it should not be used for everyday tasks.
-- **IAM User:** A user entity created by the Root User for everyday tasks. Like a simple user account in Windows, the IAM user has its own credentials and permissions. IAM = Identity and Access Management.
-- **AWS Management Console:** Web UI for creating users and performing AWS account administration.
+- **Root User:** Automatically created during AWS account setup. Like an administrator account in Windows, the Root User has full administrative access to the AWS account. Consequently, it should not be used for everyday tasks.
+- **IAM User:** User entity created by the Root User for everyday tasks. Like a simple user account in Windows, the IAM user has its own credentials and permissions. IAM = Identity and Access Management.
+- **AWS Management Console:** Web UI for AWS account administration.
+
+### Data Partitioning
+- **Partitioning by Date:** It is common practice to run Spark jobs periodically (e.g., daily) to process new data. To optimize this process, data can be partitioned by date by embedding a specific key-value pair directly into the S3 file path. While date is the most frequent choice, partitioning can be done by other keys or even multiple nested keys.
+- **Partitioning Syntax:** `data/reviews/date=2025-11-10/reviews.csv`. In this example, `date` is the partitioning key, and `2025-11-10` is the partitioning value.
+- **Spark Integration:** When Spark reads from a partitioned directory structure, it automatically infers the partitioning key as a column in the resulting DataFrame, populating it with the respective partitioning values.
+- **Predicate Pushdown:** Filtering the dataset directly on the partitioning field enables **predicate pushdown**. This allows Spark to skip irrelevant directories entirely, avoiding unnecessary I/O operations and significantly improving query performance.
 
 ## Resources
 
