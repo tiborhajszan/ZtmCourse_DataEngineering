@@ -9,6 +9,7 @@
 - Simple Storage Service (S3)
 - Setting Up an AWS Account
 - Data Partitioning
+- Using S3
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
@@ -65,11 +66,26 @@
 - **Spark Integration:** When Spark reads from a partitioned directory structure, it automatically infers the partitioning key as a column in the resulting DataFrame, populating it with the respective partitioning values.
 - **Predicate Pushdown:** Filtering the dataset directly on the partitioning field enables **predicate pushdown**. This allows Spark to skip irrelevant directories entirely, avoiding unnecessary I/O operations and significantly improving query performance.
 
+### S3 Bucket File Structure
+- `data/listings/date=yyyy-mm/`: Folder for Air BnB listings, partitioned by date, Spark input.
+- `data/reviews/date=yyyy-mm/`: Folder for rewiews, partitioned by date, Spark input.
+- `data/reviews_per_listing/date=yyyy-mm/`: Folder for Spark output, partitioned by date.
+- `spark/jobs/`: Folder for Spark job scripts.
+- `spark/logs/`: Folder for Spark job execution logs.
+
+### Creating S3 Bucket
+- **Creating Bucket:** > AWS Console > S3 > Create Bucket (General Purpose, specify bucket name, Disable ACL, Block Public Access, Disable Versioning, No Tags, Encryption Default Settings).
+- **Creating Folders:** > Target Bucket > Objects > Create Folder > specify folder name.
+- **Uploading Files:** > Target Folder > Upload > Add Files > select file(s) to upload.
+- **CLI Upload:** > CLI > `aws s3 cp {file_name} s3://{target_path}`.
+
 ## Resources
 
 <div style="color: navajowhite; font-weight: bold;">
 
 Amazon Web Services [🔗](https://aws.amazon.com/)
+
+AWS CLI [🔗](https://aws.amazon.com/cli/)
 
 Resource [🔗]()
 
