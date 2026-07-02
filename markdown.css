@@ -47,6 +47,9 @@ code {
 ul {
   margin: 0;
 }
+pre {
+  border: none;
+}
 hr {
   margin: 20px 0;
 }

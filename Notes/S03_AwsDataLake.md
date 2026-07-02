@@ -10,6 +10,7 @@
 - Setting Up an AWS Account
 - Data Partitioning
 - Using S3
+- EMR Serverless
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
@@ -67,17 +68,30 @@
 - **Predicate Pushdown:** Filtering the dataset directly on the partitioning field enables **predicate pushdown**. This allows Spark to skip irrelevant directories entirely, avoiding unnecessary I/O operations and significantly improving query performance.
 
 ### S3 Bucket File Structure
-- `data/listings/date=yyyy-mm/`: Folder for Air BnB listings, partitioned by date, Spark input.
-- `data/reviews/date=yyyy-mm/`: Folder for rewiews, partitioned by date, Spark input.
+- `data/listings/date=yyyy-mm/`: Folder for Air BnB listings, partitioned by date.
+- `data/reviews/date=yyyy-mm/`: Folder for rewiews, partitioned by date.
 - `data/reviews_per_listing/date=yyyy-mm/`: Folder for Spark output, partitioned by date.
 - `spark/jobs/`: Folder for Spark job scripts.
 - `spark/logs/`: Folder for Spark job execution logs.
 
 ### Creating S3 Bucket
-- **Creating Bucket:** > AWS Console > S3 > Create Bucket (General Purpose, specify bucket name, Disable ACL, Block Public Access, Disable Versioning, No Tags, Encryption Default Settings).
+- **Creating Bucket:** > AWS Console > S3 > Create Bucket (set General Purpose, specify Bucket Name, disable ACL, block Public Access, disable Versioning, specify no Tags, leave Encryption Default as is).
 - **Creating Folders:** > Target Bucket > Objects > Create Folder > specify folder name.
 - **Uploading Files:** > Target Folder > Upload > Add Files > select file(s) to upload.
-- **CLI Upload:** > CLI > `aws s3 cp {file_name} s3://{target_path}`.
+
+```bash
+# CLI upload
+$ aws s3 cp {file_name} s3://{target_path}
+```
+
+### Running Spark Jobs on AWS
+- **Serverless EMR:** AWS service that runs code in the cloud. It is accessible via its API or the AWS CLI.
+- **EMR:** Elastic Map Reduce.
+- **MapReduce:** The first data processing framework created by Google.
+#### Using EMR
+- **Upload:** The Python script is uploaded to an S3 Bucket.
+- **Execute:** After specifying locations for code, input, and output, EMR executes the Python script.
+- **Output:** The results of execution are finally written back to the S3 Bucket.
 
 ## Resources
 
@@ -90,5 +104,3 @@ AWS CLI [🔗](https://aws.amazon.com/cli/)
 Resource [🔗]()
 
 </div>
-
----
