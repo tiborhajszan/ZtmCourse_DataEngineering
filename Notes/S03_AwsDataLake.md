@@ -11,6 +11,7 @@
 - Data Partitioning
 - Using S3
 - EMR Serverless
+- IAM Roles
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
@@ -57,9 +58,9 @@
 - **S3 Alternatives:** Google Cloud Storage, Azure Blob Storage, Hadoop Distributed Filesystem.
 
 ### AWS Account Setup
+- **AWS Management Console:** Web UI for AWS account administration.
 - **Root User:** Automatically created during AWS account setup. Like an administrator account in Windows, the Root User has full administrative access to the AWS account. Consequently, it should not be used for everyday tasks.
 - **IAM User:** User entity created by the Root User for everyday tasks. Like a simple user account in Windows, the IAM user has its own credentials and permissions. IAM = Identity and Access Management.
-- **AWS Management Console:** Web UI for AWS account administration.
 
 ### Data Partitioning
 - **Partitioning by Date:** It is common practice to run Spark jobs periodically (e.g., daily) to process new data. To optimize this process, data can be partitioned by date by embedding a specific key-value pair directly into the S3 file path. While date is the most frequent choice, partitioning can be done by other keys or even multiple nested keys.
@@ -92,6 +93,13 @@ $ aws s3 cp {file_name} s3://{target_path}
 - **Upload:** The Python script is uploaded to an S3 Bucket.
 - **Execute:** After specifying locations for code, input, and output, EMR executes the Python script.
 - **Output:** The results of execution are finally written back to the S3 Bucket.
+
+### Accessing AWS via Other Services
+- **Human Users:** Individual people access AWS resources via dedicated **IAM User** accounts.
+* **Machine Users (Services and Applications):** Hardcoding credentials into software is poor security practice, so services and applications use **IAM Roles** to access AWS resources securely.
+* **IAM Role:** Secure identity with specific permissions that other AWS services can temporarily assume.
+* **Role Permission Policies:** Define *what* actions and resources the role is allowed to access.
+* **Role Trust Policy:** Define *which* specific services or applications are allowed to assume that role.
 
 ## Resources
 
