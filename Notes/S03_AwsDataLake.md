@@ -12,6 +12,7 @@
 - Using S3
 - EMR Serverless
 - IAM Roles
+- Running a Spark Job
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
@@ -98,8 +99,26 @@ $ aws s3 cp {file_name} s3://{target_path}
 - **Human Users:** Individual people access AWS resources via dedicated **IAM User** accounts.
 * **Machine Users (Services and Applications):** Hardcoding credentials into software is poor security practice, so services and applications use **IAM Roles** to access AWS resources securely.
 * **IAM Role:** Secure identity with specific permissions that other AWS services can temporarily assume.
-* **Role Permission Policies:** Define *what* actions and resources the role is allowed to access.
 * **Role Trust Policy:** Define *which* specific services or applications are allowed to assume that role.
+* **Role Permission Policies:** Define *what* actions and resources the role is allowed to access.
+
+### Running Spark Jobs on AWS
+- **Creating IAM Role:** We create an IAM Role for EMR @ AWS Management Console > IAM > Roles.
+- **Creating EMR Application:** We create the environment to run Spark jobs @ AWS Management Console > EMR > EMR Serverless.
+- **Configuration Files:** Located in project folder and contain s3 paths to pyspark script, input files, output file, and log file.
+- **Running PySpark Script:** See code below.
+- **Job Run ID:** Returned by EMR when the job is scheduled.
+
+```bash
+# pyspark script CLI upload
+$ aws s3 cp {script_name} s3://{target_path}
+# running pyspark script
+$ aws emr-serverless start-job-run \
+    --application-id {id} \
+    --execution-role-arn {arn} \
+    --job-driver {file://driver_config_path} \
+    --configuration-overrides {file://override_config_path}
+```
 
 ## Resources
 
