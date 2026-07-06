@@ -13,6 +13,7 @@
 - EMR Serverless
 - IAM Roles
 - Running a Spark Job
+- Parquet Data Format
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
@@ -103,21 +104,35 @@ $ aws s3 cp {file_name} s3://{target_path}
 * **Role Permission Policies:** Define *what* actions and resources the role is allowed to access.
 
 ### Running Spark Jobs on AWS
-- **Creating IAM Role:** We create an IAM Role for EMR @ AWS Management Console > IAM > Roles.
-- **Creating EMR Application:** We create the environment to run Spark jobs @ AWS Management Console > EMR > EMR Serverless.
-- **Configuration Files:** Located in project folder and contain s3 paths to pyspark script, input files, output file, and log file.
+- **Uploading PySpark Script:** See code below.
+- **IAM Role for EMR:** Created @ AWS Management Console > IAM > Roles.
+- **EMR Application:** Execution environment for Spark jobs. Created @ AWS Management Console > EMR > EMR Serverless.
+- **Job Driver:** JSON configuration file located in project folder. Contains S3 paths to PySpark script, input files, and output file.
+- **Configuration Overrides:** JSON configuration file located in project folder. Contains S3 path to log file.
 - **Running PySpark Script:** See code below.
-- **Job Run ID:** Returned by EMR when the job is scheduled.
-
+- **Job Run ID:** Returned by EMR when the Spark job is scheduled. Used for monitoring batch execution.
 ```bash
-# pyspark script CLI upload
-$ aws s3 cp {script_name} s3://{target_path}
+# uploading pyspark script
+$ aws s3 cp {script_path} s3://{target_path}
 # running pyspark script
 $ aws emr-serverless start-job-run \
     --application-id {id} \
     --execution-role-arn {arn} \
-    --job-driver {file://driver_config_path} \
-    --configuration-overrides {file://override_config_path}
+    --job-driver {file://job_driver_path} \
+    --configuration-overrides {file://configuration_overrides_path}
+```
+
+### Parquet Data Format
+- **Online Transactional Processing (OLTP):** Focuses on efficiently executing a high volume of day-to-day business transactions (e.g., e-commerce orders, banking updates). Queries typically request or update all fields of a specific record.
+- **Row-Oriented Data Format (CSV, Traditional DBs):** Stores whole records together. It is ideal for OLTP workloads because of fast single-row reads and writes, but terrible for analytics because scanning unnecessary columns increases I/O operations.
+- **Online Analytical Processing (OLAP):** Focuses on data analytics, business intelligence, and data science by evaluating historical data. Queries typically request a few specific fields across millions of records (e.g., calculating a `SUM` or `AVG` for global sales reports).
+- **Column-Oriented Data Format:** Stores values of the same field together. It is highly efficient for OLAP workloads because it skips irrelevant columns to minimize I/O operations, but slow for transactional updates because fields of the same record are widely separated.
+- **Apache Parquet:** An optimized, open-source column-oriented data format that divides data into **row groups**, then stores data in a **column-oriented format** within each group.
+- **Compression and Encoding:** Parquet supports standard compression (Gzip, Snappy) and **Run-Length Encoding (RLE)**, which stores only distinct values and their number of occurrences.
+- **Key Benefits of Parquet:** Results in less storage space, significantly faster processing, and lower cloud costs.
+```python
+# writing parquet format
+dataframe.write.parquet("s3://{target_path}")
 ```
 
 ## Resources
