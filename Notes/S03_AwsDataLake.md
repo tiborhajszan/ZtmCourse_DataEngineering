@@ -14,6 +14,7 @@
 - IAM Roles
 - Running a Spark Job
 - Parquet Data Format
+- Implementing a Data Catalog
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
@@ -134,6 +135,17 @@ $ aws emr-serverless start-job-run \
 # writing parquet format
 dataframe.write.parquet("s3://{target_path}")
 ```
+
+### Data Catalog
+- **Data Swamp:** A poorly managed data lake that lacks a data catalog, resulting in an unorganized mess of code and data.
+- **Data Catalog:** A centralized metadata database that stores structural information about a data lake.
+- **Catalog Features:** Provides information on available datasets, schemas, and data sources, while enabling seamless collaboration among data engineers, data analysts, and data scientists.
+- **Catalog Implementations:** AWS Glue, Amundsen, Marquez, and Apache Atlas.
+- **Metadata Creation:** Generated either manually by engineers or automatically via data crawlers.
+- **Data Crawler:** Software that scans raw data in storage (like Amazon S3 or relational databases) to automatically infer its metadata and structure.
+- **Data Classifier:** A component that evaluates data formats, generates schemas for stored datasets, and feeds that structural definition to data crawlers.
+- **Engineering Benefits:** Streamlines how data engineers manage, discover, and organize assets within the data lake.
+- **Analytical Benefits:** Enables data analysts to query a data lake with standard SQL using services like AWS Athena, which relies on the data catalog to locate and map the underlying files.
 
 ## Resources
 
