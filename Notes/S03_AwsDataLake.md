@@ -15,6 +15,7 @@
 - Running a Spark Job
 - Parquet Data Format
 - Implementing a Data Catalog
+- Data Catalog Demo
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
@@ -146,6 +147,11 @@ dataframe.write.parquet("s3://{target_path}")
 - **Data Classifier:** A component that evaluates data formats, generates schemas for stored datasets, and feeds that structural definition to data crawlers.
 - **Engineering Benefits:** Streamlines how data engineers manage, discover, and organize assets within the data lake.
 - **Analytical Benefits:** Enables data analysts to query a data lake with standard SQL using services like AWS Athena, which relies on the data catalog to locate and map the underlying files.
+
+### Building Data Catalog
+- **Creating Catalog:** > AWS management console > AWS glue > Databases
+- **Creating Crawler:** > AWS management console > AWS glue > Crawlers
+- **Crawler Output:** AWS management console > AWS glue > Databases > Tables
 
 ## Resources
 
