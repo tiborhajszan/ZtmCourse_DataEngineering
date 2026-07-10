@@ -16,6 +16,7 @@
 - Parquet Data Format
 - Implementing a Data Catalog
 - Data Catalog Demo
+- Querying a Data Lake
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
@@ -151,7 +152,13 @@ dataframe.write.parquet("s3://{target_path}")
 ### Building Data Catalog
 - **Creating Catalog:** > AWS management console > AWS glue > Databases
 - **Creating Crawler:** > AWS management console > AWS glue > Crawlers
-- **Crawler Output:** AWS management console > AWS glue > Databases > Tables
+- **Crawler Output:** > AWS management console > AWS glue > Databases > Tables
+
+### Data Lake Queries
+- **AWS Athena:** A serverless, interactive query service that allows analyzing data directly in Amazon S3 using standard SQL. It treats the data lake like a traditional relational database without needing to load the data first.
+- **Athena Setup:** AWS Management Console > Amazon Athena > Settings > Specify an S3 bucket path to store query results.
+- **Using Athena:** AWS Management Console > Amazon Athena > Editor > Select the correct Data Source before running queries.
+- **Quick Tip:** Athena charges based on the amount of data scanned by each query. Compressing data or converting it into columnar formats (like Apache Parquet) can significantly reduce costs.
 
 ## Resources
 
