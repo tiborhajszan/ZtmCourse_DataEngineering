@@ -17,6 +17,7 @@
 - Implementing a Data Catalog
 - Data Catalog Demo
 - Querying a Data Lake
+- Summary
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
