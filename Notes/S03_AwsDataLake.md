@@ -18,6 +18,7 @@
 - Data Catalog Demo
 - Querying a Data Lake
 - Summary
+- Course Check-In
 
 ### Database
 - Local or cloud data repository in the service of local or web applicatons.
@@ -167,8 +168,8 @@ dataframe.write.parquet("s3://{target_path}")
 
 Amazon Web Services [🔗](https://aws.amazon.com/)
 
-AWS CLI [🔗](https://aws.amazon.com/cli/)
+AWS Command Line Interface [🔗](https://aws.amazon.com/cli/)
 
-Resource [🔗]()
+AWS Well Architected [🔗](https://aws.amazon.com/architecture/well-architected/)
 
 </div>
